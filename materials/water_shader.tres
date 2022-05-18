@@ -1,0 +1,54 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[sub_resource type="Shader" id=1]
+code = "//https://godotshaders.com/snippet/2d-noise/
+//https://godotshaders.com/shader/2d-water-shader/
+
+shader_type canvas_item;
+
+uniform float TILE_MULT = 50.0;
+uniform vec4 COLOR_BASE = vec4(0.05, 0.18, 0.35, 1.0);
+uniform vec4 COLOR_LINES = vec4(0.05, 0.18, 0.35, 1.0);
+
+vec2 random(vec2 uv){
+    uv = vec2( dot(uv, vec2(127.1,311.7) ),
+               dot(uv, vec2(269.5,183.3) ) );
+    return -1.0 + 2.0 * fract(sin(uv) * 43758.5453123);
+}
+
+float noise(vec2 uv, float variation) {
+    vec2 uv_index = floor(uv);
+    vec2 uv_fract = fract(uv);
+
+    vec2 blur = smoothstep(0.0, 1.0, uv_fract);
+
+    return mix( mix( dot( random(uv_index + vec2(0.0,0.0)), uv_fract - vec2(0.0,0.0) ),
+                     dot( random(uv_index + vec2(1.0,0.0)), uv_fract - vec2(1.0,0.0) ), blur.x),
+                mix( dot( random(uv_index + vec2(0.0,1.0)), uv_fract - vec2(0.0,1.0) ),
+                     dot( random(uv_index + vec2(1.0,1.0)), uv_fract - vec2(1.0,1.0) ), blur.x), blur.y) + 0.5 + variation;
+}
+
+float make_layer(vec2 uv, float time_mult_1, float time_mult_2, float grid_div_1, float grid_div_2){
+    float noise_1 = noise(uv*grid_div_1,cos(TIME)/time_mult_1);
+	float noise_2 = noise(uv*grid_div_2,sin(TIME)/time_mult_2);
+	float mixed_noise = mix(noise_1, noise_2, sin(0.1*TIME));
+	
+	return step(mixed_noise, 0.5)/4.0 + 1.0;
+}
+
+void fragment()
+{
+	vec2 uv_to_use = vec2( UV.x + sin(TIME)/400.0, UV.y + sin(TIME)/400.0 );
+	
+	float final_water = (make_layer(uv_to_use, 1.2, 1.5, 40, 41) + make_layer(uv_to_use, 2.5, 2.1, 50, 52) + make_layer(uv_to_use, 3.7, 3.0, 70, 71) )/3.0;
+	//float grid = grid_average;
+	
+	COLOR = vec4(final_water*COLOR_BASE.x, final_water*COLOR_BASE.g, final_water*COLOR_BASE.b, 1.0);
+}
+"
+
+[resource]
+shader = SubResource( 1 )
+shader_param/TILE_MULT = 10.0
+shader_param/COLOR_BASE = Plane( 0.05, 0.18, 0.35, 1 )
+shader_param/COLOR_LINES = Plane( 0.05, 0.18, 0.35, 1 )

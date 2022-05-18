@@ -1,0 +1,324 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://scripts/fish.gd" type="Script" id=1]
+[ext_resource path="res://scripts/reel_scene_manager.gd" type="Script" id=2]
+[ext_resource path="res://textures/fish_shadows/big_fish.png" type="Texture" id=3]
+[ext_resource path="res://fonts/times.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://materials/water_distortion.tres" type="Material" id=5]
+[ext_resource path="res://textures/water/Water Texture - Base.png" type="Texture" id=6]
+[ext_resource path="res://textures/water/Water Texture - Layer 1.png" type="Texture" id=7]
+[ext_resource path="res://textures/water/Water Texture - Layer 2.png" type="Texture" id=8]
+[ext_resource path="res://scripts/Circles.gd" type="Script" id=9]
+[ext_resource path="res://textures/water/Water Texture - Layer 3.png" type="Texture" id=10]
+[ext_resource path="res://textures/reel_scene/circle_small.png" type="Texture" id=11]
+[ext_resource path="res://textures/reel_scene/circle_large.png" type="Texture" id=12]
+[ext_resource path="res://materials/occlusion.tres" type="Material" id=13]
+
+[sub_resource type="DynamicFont" id=1]
+size = 27
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 27
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 27
+font_data = ExtResource( 4 )
+
+[node name="reel_scene_manager" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Control" type="Control" parent="."]
+margin_top = -3.0
+margin_right = 1920.0
+margin_bottom = 1077.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="water_texture_base" type="TextureRect" parent="Control"]
+anchor_left = 3.09944e-08
+anchor_top = 0.00277778
+anchor_right = 3.09944e-08
+anchor_bottom = 0.00277778
+margin_left = -5.95093e-05
+margin_right = 1920.0
+margin_bottom = 1080.0
+mouse_filter = 2
+texture = ExtResource( 6 )
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="water_texture_layer_1" type="TextureRect" parent="Control"]
+self_modulate = Color( 1, 1, 1, 0.403922 )
+anchor_left = 3.17892e-08
+anchor_top = 0.00277778
+anchor_right = 6.35783e-08
+anchor_bottom = 0.00277778
+margin_left = -6.10352e-05
+margin_right = 1920.0
+margin_bottom = 1080.0
+mouse_filter = 2
+texture = ExtResource( 7 )
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="water_texture_layer_2" type="TextureRect" parent="Control"]
+self_modulate = Color( 1, 1, 1, 0.47451 )
+anchor_top = 0.00277774
+anchor_bottom = 0.00277778
+margin_top = 4.11988e-05
+margin_right = 1920.0
+margin_bottom = 1080.0
+mouse_filter = 2
+texture = ExtResource( 8 )
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="water_texture_layer_3" type="TextureRect" parent="Control"]
+modulate = Color( 1, 1, 1, 0.462745 )
+anchor_left = 3.17892e-08
+anchor_top = 0.00277778
+anchor_right = 6.35783e-08
+anchor_bottom = 0.00277778
+margin_left = -6.10352e-05
+margin_top = 1.52588e-06
+margin_right = 1920.0
+margin_bottom = 1080.0
+mouse_filter = 2
+texture = ExtResource( 10 )
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="."]
+position = Vector2( 960, 540 )
+scale = Vector2( 9.6, 5.4 )
+copy_mode = 2
+
+[node name="distorter" type="ColorRect" parent="BackBufferCopy"]
+material = ExtResource( 5 )
+margin_left = -100.0
+margin_top = -100.0
+margin_right = 100.0
+margin_bottom = 100.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="fish" type="KinematicBody2D" parent="."]
+position = Vector2( 960, 540 )
+collision_layer = 16
+collision_mask = 16
+script = ExtResource( 1 )
+
+[node name="fish_sprite" type="Sprite" parent="fish"]
+position = Vector2( 1.52588e-05, 0 )
+rotation = 1.5708
+texture = ExtResource( 3 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="fish"]
+polygon = PoolVector2Array( -84, -6, -41, -22, 43, -46, 93, -39, 131, -22, 148, 12, 121, 41, 77, 54, 29, 51, -42, 31, -86, 13, -142, 18, -113, 3, -140, -12 )
+
+[node name="fish_force_timer" type="Timer" parent="fish"]
+autostart = true
+__meta__ = {
+"_editor_description_": "sets the speed at which the fish switches between swim and reel mode"
+}
+
+[node name="fish_swim_timer" type="Timer" parent="fish"]
+wait_time = 0.75
+autostart = true
+__meta__ = {
+"_editor_description_": "sets the speed at which the fish changes directions"
+}
+
+[node name="line" type="Line2D" parent="."]
+points = PoolVector2Array( 952, 1028, 1109, 557 )
+width = 8.0
+default_color = Color( 0.572549, 0.572549, 0.572549, 1 )
+__meta__ = {
+"_editor_description_": "Move the points, NOT the whole object, or you will cause issues with the win condition! Position shoud remain at (0,0)."
+}
+
+[node name="fish_tension_bar" type="ProgressBar" parent="."]
+margin_left = 55.0
+margin_top = 1121.0
+margin_right = 501.0
+margin_bottom = 1151.0
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="fish_tension_bar"]
+margin_left = 5.0
+margin_right = 235.0
+margin_bottom = 43.0
+custom_fonts/normal_font = SubResource( 1 )
+text = "LINE TENSION"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="fish_distance_bar" type="ProgressBar" parent="."]
+margin_left = 55.0
+margin_top = 1163.0
+margin_right = 501.0
+margin_bottom = 1193.0
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="fish_distance_bar"]
+margin_left = 5.0
+margin_top = -1.0
+margin_right = 225.0
+margin_bottom = 31.0
+custom_fonts/normal_font = SubResource( 2 )
+text = "FISH DISTANCE"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="fish_force_bar" type="ProgressBar" parent="."]
+margin_left = 75.0
+margin_top = 1005.0
+margin_right = 521.0
+margin_bottom = 1035.0
+rect_rotation = -89.9999
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="fish_force_bar"]
+margin_left = 5.0
+margin_right = 217.0
+margin_bottom = 36.0
+custom_fonts/normal_font = SubResource( 3 )
+text = "FISH FORCE"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="circles" type="Control" parent="."]
+mouse_filter = 2
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="circle_large" type="Sprite" parent="circles"]
+position = Vector2( 947, 1033 )
+texture = ExtResource( 12 )
+
+[node name="circle_small" type="Sprite" parent="circles"]
+position = Vector2( 947, 1033 )
+texture = ExtResource( 11 )
+
+[node name="occlusion" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 6.10352e-05
+margin_top = 6.10352e-05
+margin_right = 1920.0
+margin_bottom = 1080.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="top" type="ColorRect" parent="occlusion"]
+material = ExtResource( 13 )
+margin_left = -6.10352e-05
+margin_top = -1077.0
+margin_right = 1920.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="bottom" type="ColorRect" parent="occlusion"]
+material = ExtResource( 13 )
+margin_left = -6.10352e-05
+margin_top = 1080.0
+margin_right = 1920.0
+margin_bottom = 2157.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="left" type="ColorRect" parent="occlusion"]
+material = ExtResource( 13 )
+margin_left = -1920.0
+margin_top = -1077.0
+margin_bottom = 2157.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="right" type="ColorRect" parent="occlusion"]
+material = ExtResource( 13 )
+margin_left = 1920.0
+margin_top = -1077.0
+margin_right = 3840.0
+margin_bottom = 2157.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Frame" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Left" type="ColorRect" parent="Frame"]
+margin_right = 50.0
+margin_bottom = 1080.0
+rect_pivot_offset = Vector2( -37, 579 )
+color = Color( 0.596078, 0.541176, 0.419608, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Right" type="ColorRect" parent="Frame"]
+margin_left = 1870.0
+margin_right = 1920.0
+margin_bottom = 1080.0
+rect_pivot_offset = Vector2( 312, 272 )
+color = Color( 0.596078, 0.541176, 0.419608, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Top" type="ColorRect" parent="Frame"]
+margin_right = 1920.0
+margin_bottom = 50.0
+rect_pivot_offset = Vector2( 312, 272 )
+color = Color( 0.596078, 0.541176, 0.419608, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Bottom" type="ColorRect" parent="Frame"]
+margin_top = 1030.0
+margin_right = 1920.0
+margin_bottom = 1080.0
+rect_pivot_offset = Vector2( 312, 272 )
+color = Color( 0.596078, 0.541176, 0.419608, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

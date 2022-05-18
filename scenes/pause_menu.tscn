@@ -1,0 +1,189 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://textures/water/Water Texture - Layer 2.png" type="Texture" id=1]
+[ext_resource path="res://textures/main menu ui/menu_button.png" type="Texture" id=2]
+[ext_resource path="res://materials/water_distortion.tres" type="Material" id=3]
+[ext_resource path="res://textures/water/Water Texture - Base.png" type="Texture" id=4]
+[ext_resource path="res://textures/water/Water Texture - Layer 1.png" type="Texture" id=5]
+[ext_resource path="res://textures/water/Water Texture - Layer 3.png" type="Texture" id=7]
+[ext_resource path="res://scripts/pause_menu_buttons.gd" type="Script" id=8]
+[ext_resource path="res://textures/main menu ui/settings_button.png" type="Texture" id=9]
+[ext_resource path="res://textures/main menu ui/settings_button_hover.png" type="Texture" id=10]
+[ext_resource path="res://textures/main menu ui/resume_button_hover.png" type="Texture" id=11]
+[ext_resource path="res://textures/main menu ui/menu_button_hover.png" type="Texture" id=12]
+[ext_resource path="res://textures/main menu ui/resume_button.png" type="Texture" id=13]
+[ext_resource path="res://fonts/ThinPrint-Regular.ttf" type="DynamicFontData" id=14]
+
+[sub_resource type="DynamicFont" id=1]
+size = 200
+font_data = ExtResource( 14 )
+
+[node name="CanvasLayer" type="CanvasLayer"]
+pause_mode = 2
+
+[node name="translucent_bg" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.192157, 0.192157, 0.192157, 0.533333 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="."]
+visible = false
+margin_right = 1920.0
+margin_bottom = 1080.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="water_texture_base" type="TextureRect" parent="Control"]
+visible = false
+margin_left = -50.0
+margin_top = -50.0
+margin_right = 1870.0
+margin_bottom = 1030.0
+rect_scale = Vector2( 1.069, 1.079 )
+mouse_filter = 2
+texture = ExtResource( 4 )
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="water_texture_layer_1" type="TextureRect" parent="Control"]
+visible = false
+self_modulate = Color( 1, 1, 1, 0.403922 )
+margin_left = -50.0
+margin_top = -50.0
+margin_right = 1870.0
+margin_bottom = 1030.0
+rect_scale = Vector2( 1.069, 1.079 )
+mouse_filter = 2
+texture = ExtResource( 5 )
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="water_texture_layer_2" type="TextureRect" parent="Control"]
+visible = false
+self_modulate = Color( 1, 1, 1, 0.47451 )
+anchor_top = -3.8147e-08
+margin_left = -50.0
+margin_top = -50.0
+margin_right = 1870.0
+margin_bottom = 1030.0
+rect_scale = Vector2( 1.069, 1.079 )
+mouse_filter = 2
+texture = ExtResource( 1 )
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="water_texture_layer_3" type="TextureRect" parent="Control"]
+visible = false
+modulate = Color( 1, 1, 1, 0.462745 )
+anchor_top = -3.8147e-08
+margin_left = -50.0
+margin_top = -50.0
+margin_right = 1870.0
+margin_bottom = 1030.0
+rect_scale = Vector2( 1.069, 1.079 )
+mouse_filter = 2
+texture = ExtResource( 7 )
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="."]
+visible = false
+position = Vector2( 960, 540 )
+scale = Vector2( 9.6, 5.4 )
+copy_mode = 2
+
+[node name="distorter" type="ColorRect" parent="BackBufferCopy"]
+visible = false
+material = ExtResource( 3 )
+margin_left = -100.0
+margin_top = -100.0
+margin_right = 100.0
+margin_bottom = 100.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Node2D" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Title" type="RichTextLabel" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -528.0
+margin_top = 96.0
+margin_right = 365.0
+margin_bottom = 512.0
+rect_scale = Vector2( 1.217, 1 )
+custom_fonts/normal_font = SubResource( 1 )
+bbcode_enabled = true
+bbcode_text = "[center]Paused"
+text = "Paused"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="resume_btn" type="TextureButton" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -224.0
+margin_top = 368.0
+margin_right = 413.0
+margin_bottom = 620.0
+rect_scale = Vector2( 0.75, 0.6 )
+texture_normal = ExtResource( 13 )
+texture_pressed = ExtResource( 11 )
+texture_hover = ExtResource( 11 )
+texture_focused = ExtResource( 11 )
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+ref_path = "res://scenes/overworld.tscn"
+
+[node name="settings_btn" type="TextureButton" parent="."]
+margin_left = 736.0
+margin_top = 576.0
+margin_right = 1373.0
+margin_bottom = 828.0
+rect_scale = Vector2( 0.75, 0.6 )
+texture_normal = ExtResource( 9 )
+texture_pressed = ExtResource( 10 )
+texture_hover = ExtResource( 10 )
+texture_focused = ExtResource( 10 )
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+ref_path = "res://scenes/settings_menu_in_game.tscn"
+
+[node name="main_menu_button" type="TextureButton" parent="."]
+margin_left = 736.0
+margin_top = 784.0
+margin_right = 1373.0
+margin_bottom = 1036.0
+rect_scale = Vector2( 0.75, 0.6 )
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 12 )
+texture_hover = ExtResource( 12 )
+texture_focused = ExtResource( 12 )
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+ref_path = "res://scenes/main_menu.tscn"

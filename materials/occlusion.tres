@@ -1,0 +1,24 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+ 
+//uniform vec4 masking_color : hint_color;
+//uniform float masking_range = 0.1;
+ 
+void fragment()
+{
+	//vec4 world_pixel = texture(SCREEN_TEXTURE, SCREEN_UV);
+	//discard;
+	
+	vec4 color = texture(SCREEN_TEXTURE, SCREEN_UV);
+	
+	COLOR = color;
+	//if (length(abs(masking_color - world_pixel)) >= masking_range)
+	//{
+	//	discard;
+	//}
+}"
+
+[resource]
+shader = SubResource( 1 )

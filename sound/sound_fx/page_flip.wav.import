@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/page_flip.wav-2745574bd5907daa722f2e062d48db1e.sample"
+
+[deps]
+
+source_file="res://sound/sound_fx/page_flip.wav"
+dest_files=[ "res://.import/page_flip.wav-2745574bd5907daa722f2e062d48db1e.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

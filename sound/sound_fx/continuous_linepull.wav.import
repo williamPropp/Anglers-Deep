@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/continuous_linepull.wav-f796ba5cc504a552075b66df1ac30da2.sample"
+
+[deps]
+
+source_file="res://sound/sound_fx/continuous_linepull.wav"
+dest_files=[ "res://.import/continuous_linepull.wav-f796ba5cc504a552075b66df1ac30da2.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

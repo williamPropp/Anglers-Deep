@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/boatstartup.wav-db362c8631f00c0199e0ef70fc4f8cd6.sample"
+
+[deps]
+
+source_file="res://sound/sound_fx/boatstartup.wav"
+dest_files=[ "res://.import/boatstartup.wav-db362c8631f00c0199e0ef70fc4f8cd6.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

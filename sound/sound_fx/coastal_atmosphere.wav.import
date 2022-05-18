@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/coastal_atmosphere.wav-09b6b0be90af3059f8d2f0997bc4100a.sample"
+
+[deps]
+
+source_file="res://sound/sound_fx/coastal_atmosphere.wav"
+dest_files=[ "res://.import/coastal_atmosphere.wav-09b6b0be90af3059f8d2f0997bc4100a.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

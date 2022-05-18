@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/linepull1.wav-b840bbecf9ec212c77766d158d2154e2.sample"
+
+[deps]
+
+source_file="res://sound/sound_fx/linepull1.wav"
+dest_files=[ "res://.import/linepull1.wav-b840bbecf9ec212c77766d158d2154e2.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

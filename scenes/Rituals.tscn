@@ -1,0 +1,179 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://textures/journal ui/ritual_bg.png" type="Texture" id=1]
+[ext_resource path="res://scripts/stickynotes.gd" type="Script" id=2]
+[ext_resource path="res://objects/ritual_tile.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scripts/ritual_manager.gd" type="Script" id=4]
+[ext_resource path="res://textures/journal ui/stickynote_equipment_hover.png" type="Texture" id=5]
+[ext_resource path="res://textures/journal ui/stickynote_inventory_hover.png" type="Texture" id=6]
+[ext_resource path="res://textures/journal ui/stickynote_pedia_hover.png" type="Texture" id=7]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource( 4 )
+
+[node name="translucent_bg" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.192157, 0.192157, 0.192157, 0.533333 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="bg" type="Sprite" parent="."]
+position = Vector2( 960, 540 )
+scale = Vector2( 1.59734, 1.59763 )
+texture = ExtResource( 1 )
+
+[node name="ritual_tile1" parent="." instance=ExtResource( 3 )]
+margin_left = 1064.0
+margin_top = 288.0
+margin_right = 1264.0
+margin_bottom = 488.0
+component_tile = true
+
+[node name="ritual_tile2" parent="." instance=ExtResource( 3 )]
+margin_left = 1136.0
+margin_top = 504.0
+margin_right = 1336.0
+margin_bottom = 704.0
+component_tile = true
+
+[node name="ritual_tile3" parent="." instance=ExtResource( 3 )]
+margin_left = 1064.0
+margin_top = 720.0
+margin_right = 1264.0
+margin_bottom = 920.0
+component_tile = true
+
+[node name="ritual_tile4" parent="." instance=ExtResource( 3 )]
+margin_left = 1464.0
+margin_top = 464.0
+margin_right = 1664.0
+margin_bottom = 664.0
+product_tile = true
+
+[node name="ritual_inv_tile1" parent="." instance=ExtResource( 3 )]
+margin_left = 248.0
+margin_top = 224.0
+margin_right = 448.0
+margin_bottom = 424.0
+rect_scale = Vector2( 0.8, 0.8 )
+
+[node name="ritual_inv_tile2" parent="." instance=ExtResource( 3 )]
+margin_left = 440.0
+margin_top = 224.0
+margin_right = 640.0
+margin_bottom = 424.0
+rect_scale = Vector2( 0.8, 0.8 )
+
+[node name="ritual_inv_tile3" parent="." instance=ExtResource( 3 )]
+margin_left = 632.0
+margin_top = 224.0
+margin_right = 832.0
+margin_bottom = 424.0
+rect_scale = Vector2( 0.8, 0.8 )
+
+[node name="ritual_inv_tile4" parent="." instance=ExtResource( 3 )]
+margin_left = 248.0
+margin_top = 416.0
+margin_right = 448.0
+margin_bottom = 616.0
+rect_scale = Vector2( 0.8, 0.8 )
+
+[node name="ritual_inv_tile5" parent="." instance=ExtResource( 3 )]
+margin_left = 440.0
+margin_top = 416.0
+margin_right = 640.0
+margin_bottom = 616.0
+rect_scale = Vector2( 0.8, 0.8 )
+
+[node name="ritual_inv_tile6" parent="." instance=ExtResource( 3 )]
+margin_left = 632.0
+margin_top = 416.0
+margin_right = 832.0
+margin_bottom = 616.0
+rect_scale = Vector2( 0.8, 0.8 )
+
+[node name="ritual_inv_tile7" parent="." instance=ExtResource( 3 )]
+margin_left = 248.0
+margin_top = 608.0
+margin_right = 448.0
+margin_bottom = 808.0
+rect_scale = Vector2( 0.8, 0.8 )
+
+[node name="ritual_inv_tile8" parent="." instance=ExtResource( 3 )]
+margin_left = 440.0
+margin_top = 608.0
+margin_right = 640.0
+margin_bottom = 808.0
+rect_scale = Vector2( 0.8, 0.8 )
+
+[node name="ritual_inv_tile9" parent="." instance=ExtResource( 3 )]
+margin_left = 632.0
+margin_top = 608.0
+margin_right = 832.0
+margin_bottom = 808.0
+rect_scale = Vector2( 0.8, 0.8 )
+
+[node name="ritual_inv_tile10" parent="." instance=ExtResource( 3 )]
+margin_left = 248.0
+margin_top = 800.0
+margin_right = 448.0
+margin_bottom = 1000.0
+rect_scale = Vector2( 0.8, 0.8 )
+
+[node name="ritual_inv_tile11" parent="." instance=ExtResource( 3 )]
+margin_left = 440.0
+margin_top = 800.0
+margin_right = 640.0
+margin_bottom = 1000.0
+rect_scale = Vector2( 0.8, 0.8 )
+
+[node name="ritual_inv_tile12" parent="." instance=ExtResource( 3 )]
+margin_left = 632.0
+margin_top = 800.0
+margin_right = 832.0
+margin_bottom = 1000.0
+rect_scale = Vector2( 0.8, 0.8 )
+
+[node name="Inventory_stickynote" type="TextureButton" parent="."]
+margin_left = 175.0
+margin_top = 9.0
+margin_right = 492.0
+margin_bottom = 236.0
+texture_pressed = ExtResource( 6 )
+texture_hover = ExtResource( 6 )
+texture_focused = ExtResource( 6 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+ref_path = "res://scenes/Inventory.tscn"
+
+[node name="Research_stickynote" type="TextureButton" parent="."]
+margin_left = 539.0
+margin_top = 15.0
+margin_right = 854.0
+margin_bottom = 226.0
+texture_pressed = ExtResource( 7 )
+texture_hover = ExtResource( 7 )
+texture_focused = ExtResource( 7 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+ref_path = "res://scenes/Research.tscn"
+
+[node name="Equipment_stickynote" type="TextureButton" parent="."]
+margin_left = 1083.0
+margin_top = 5.0
+margin_right = 1378.0
+margin_bottom = 214.0
+texture_pressed = ExtResource( 5 )
+texture_hover = ExtResource( 5 )
+texture_focused = ExtResource( 5 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+ref_path = "res://scenes/Equipment.tscn"
